@@ -120,7 +120,7 @@ Industry research and Snowflake customer outcomes:
 - **Philippine social commerce market reached ₱280B in 2023 with 45% growth** — [Google-Temasek SEA](https://www.bain.com/insights/e-conomy-sea-2023/)
 - **TikTok Shop Philippines grew 85% in GMV during 2023** — [TikTok for Business](https://www.tiktok.com/business/en-PH)
 - **Nano-influencers (1K-10K followers) deliver 2-3x higher engagement than mega-influencers** — [Later/Influencer Marketing Hub](https://influencermarketinghub.com/influencer-marketing-benchmark-report/)
-- **Instacart** (Snowflake customer): serves 1.4B+ data points daily on Snowflake for real-time personalization across 80K+ retail locations -- [snowflake.com/customers/instacart](https://www.snowflake.com/en/customers/all-customers/case-study/instacart/)
+- **Under Armour** (Snowflake customer): serves 1.4B+ data points daily on Snowflake for real-time personalization across 80K+ retail locations -- [snowflake.com/customers/under-armour](https://www.snowflake.com/en/customers/all-customers/case-study/under-armour/)
 
 ## Key Demo Numbers
 
