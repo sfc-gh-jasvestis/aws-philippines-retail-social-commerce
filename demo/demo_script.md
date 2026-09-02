@@ -1,108 +1,81 @@
-# Demo Script: Social Commerce Analytics & Influencer Intelligence
-## ~4-Minute Recorded Walkthrough
-**Format**: Screen recording with voiceover
-**Target**: Customer meeting / booth loop / social share
-**Narrative**: "Snowflake processes social commerce data from Amazon Comprehend pipeline, replaces it with native AI_SENTIMENT + AI_EXTRACT, builds influencer ROI scores, and uses Cortex Complete for personalized product recommendations"
-**Demo Mode**: Open app with `?demo=true` for presenter notes
+# Social Commerce Analytics & Influencer Intelligence
 
----
+**Philippines - Retail & E-Commerce**
+Use case: Social Commerce
 
-## Two Personas
+> Filipinos spend 4+ hours daily on social media — Snowflake analyzes social commerce sentiment with AI, extracts product mentions, scores influencer ROI, and drives personalized recommendations via Cortex Complete.
 
-| Persona | Role | Tool | What they care about |
-|---|---|---|---|
-| **Samantha Kaye Ong** | Head of Digital Commerce | React App (SPCS) | Social conversion rates, influencer ROI, trending products, campaign performance |
-| **Patrick Bryan Mendoza** | Social Commerce Analyst | Amazon QuickSight | Content performance, audience engagement, sentiment shifts, product-content alignment |
+## Why Snowflake
 
----
+Snowflake processes social commerce data from Amazon Comprehend pipeline, replaces it with native AI_SENTIMENT + AI_EXTRACT, builds influencer ROI scores, and uses Cortex Complete for personalized product recommendations
 
-## What's Built
+- **AI_SENTIMENT + AI_EXTRACT on social posts** - Replaces Amazon Comprehend with native Snowflake AI — zero data movement
+- **Cortex Complete for personalized recommendations** - Replaces Amazon Personalize with LLM-powered recommendations
+- **Influencer ROI attribution** - Connects social engagement directly to commerce purchases
+- **Philippine social commerce context** - #1 social media users globally — TikTok Shop, live selling, nano-influencers
+- **1.2M social posts searchable** - Cortex Search across social content for trend discovery
 
-| Layer | Component | Detail |
+## What is deployed
+
+| | |
+|---|---|
+| Database | `PH_RETAIL_SOCIAL_COMMERCE` |
+| Service | `PH_RETAIL_SOCIAL_COMMERCE_APP` |
+| Compute pool | `SEA_DEMOS_PHILIPPINES_POOL` |
+| Dimension table | `RAW.INFLUENCERS` (20 rows) |
+| Fact table | `RAW.AUDIENCE_SEGMENTS` (250,000 rows, 90 days) |
+| Curated layer | `CURATED.PERFORMANCE_SUMMARY`, `CURATED.TREND_ANALYSIS`, `CURATED.KPI_SUMMARY` |
+| Currency | PHP (₱) |
+
+Regions in play: Metro Manila, Cebu, Davao, Pampanga, Iloilo
+Segments: Live Selling, Influencer Post, Group Buy, Chat Commerce
+
+Dynamic tables are created suspended and refreshed on demand:
+
+```bash
+./refresh_demo_data.sh PH_RETAIL_SOCIAL_COMMERCE
+```
+
+## KPI cards
+
+Every card below is served live from `CURATED.KPI_SUMMARY`. The app keeps the
+original literal as a fallback, so it still renders if Snowflake is unreachable.
+
+| Card | Value | Backed by |
 |---|---|---|
-| **RAW** | 6 tables | INFLUENCERS (2800), SOCIAL_POSTS (1200000), CAMPAIGN_EVENTS (45000), SOCIAL_ORDERS (680000), PRODUCT_CATALOG (15000), AUDIENCE_SEGMENTS (1500000) |
-| **CURATED** | 4 Dynamic Tables | INFLUENCER_ROI, TRENDING_PRODUCTS, CONTENT_PERFORMANCE, AUDIENCE_AFFINITY |
-| **ML** | ML.CLASSIFICATION + ML.FORECAST | Forecasting + anomaly detection |
-| **AI** | AI_SENTIMENT, AI_EXTRACT, COMPLETE | Classification + extraction |
-| **Search** | Cortex Search | 1200000 documents indexed |
-| **Agent** | SOCIAL_COMMERCE_AGENT | Semantic View + Search tools |
+| Social GMV | `₱2.4B` | total across Influencers |
+| Live Streams (MTD) | `4,200` | total across Influencers |
+| Influencer Partners | `847` | total across Influencers |
+| Social Conversion | `4.8%` | average per event |
+| Avg Viewers/Stream | `4.2K` | average per event |
+| Stream Conversion | `8.4%` | average per event |
+| Replay Revenue | `₱420M` | total across Influencers |
 
 
----
+## Demo flow
 
-## The Story
+1. Executive Cockpit
+2. Influencer ROI
+3. Trends & Content
+4. Ask AI
+5. Architecture & Data
 
-Filipinos are the world's most active social media users — 4.1 hours per day across Facebook, TikTok, Instagram, and YouTube. Social commerce in the Philippines hit ₱280B in 2023. A leading retail brand partners with 2,800 influencers but can't tell which ones drive actual purchases vs. just engagement. Snowflake connects social sentiment and content analysis directly to commerce outcomes.
+## Talking points
 
----
+- **₱2.1B** - social commerce revenue this quarter
+- **2,800** - active influencer partnerships
+- **1.2M posts** - analyzed by AI_SENTIMENT + AI_EXTRACT
+- **4.2x ROAS** - average for nano-influencer campaigns
+- **38%** - of social commerce from TikTok Shop
+- **3.2x** - higher conversion for live selling format
 
-## Script
+## Business impact
 
-### [0:00–0:45] EXECUTIVE COCKPIT
-
-**Show**: Executive Cockpit tab
-
-> "₱2.1 billion social commerce revenue this quarter — 2,800 active influencer partnerships."
-
-**Action**: Point at ₱2.1B revenue KPI
-
-### [0:45–1:30] INFLUENCER ROI
-
-**Show**: Influencer ROI tab
-
-> "Top 10% of influencers drive 62% of attributed revenue — nano-influencers have highest ROAS."
-
-**Action**: Show influencer tier ROAS comparison
-
-### [1:30–2:15] TRENDS & CONTENT
-
-**Show**: Trends & Content tab
-
-> "AI_SENTIMENT + AI_EXTRACT processing 1.2M posts — trending now: Korean skincare bundles."
-
-**Action**: Show trending products word cloud
-
-### [2:15–3:00] ASK AI
-
-**Show**: Ask AI tab
-
-> "Samantha asks: 'Which influencer campaign had the highest ROI this month?'"
-
-**Action**: Type: 'Best influencer campaign this month?'
-
-### [3:00–3:45] ARCHITECTURE & DATA
-
-**Show**: Architecture & Data tab
-
-> "Social feeds → AI_SENTIMENT + AI_EXTRACT → Dynamic Tables → Cortex Complete recommendations."
-
-**Action**: Walk through architecture diagram
-
+- Philippines has world's highest social media usage at 4.1 hours/day per user (We Are Social / DataReportal)
+- Philippine social commerce market reached ₱280B in 2023 with 45% growth (Google-Temasek SEA)
+- TikTok Shop Philippines grew 85% in GMV during 2023 (TikTok for Business)
+- Nano-influencers (1K-10K followers) deliver 2-3x higher engagement than mega-influencers (Later/Influencer Marketing Hub)
 
 ---
-
-## Key Demo Differentiators
-
-1. **AI_SENTIMENT + AI_EXTRACT on social posts** — Replaces Amazon Comprehend with native Snowflake AI — zero data movement
-2. **Cortex Complete for personalized recommendations** — Replaces Amazon Personalize with LLM-powered recommendations
-3. **Influencer ROI attribution** — Connects social engagement directly to commerce purchases
-4. **Philippine social commerce context** — #1 social media users globally — TikTok Shop, live selling, nano-influencers
-5. **1.2M social posts searchable** — Cortex Search across social content for trend discovery
-
-
----
-
-## Demo Prep Checklist
-
-### Data Verification
-- [ ] `SELECT COUNT(*) FROM SOCIAL_COMMERCE.RAW.SOCIAL_POSTS` → 1200000
-- [ ] `SELECT COUNT(*) FROM SOCIAL_COMMERCE.RAW.SOCIAL_ORDERS` → 680000
-- [ ] `SELECT COUNT(*) FROM SOCIAL_COMMERCE.CURATED.INFLUENCER_ROI WHERE ROAS > 4.0` → >100
-
-### ML Model Verification
-- [ ] `SELECT COUNT(*) FROM SOCIAL_COMMERCE.ML.CONVERSION_CLASSIFICATION_RESULTS` → >0
-
-### AI/Agent Verification
-- [ ] `SELECT COUNT(*) FROM SOCIAL_COMMERCE.AI.POST_SENTIMENT_SCORES` → 1200000
-- [ ] `SELECT COUNT(*) FROM SOCIAL_COMMERCE.AI.EXTRACTED_PRODUCT_MENTIONS` → >0
-
+Generated from `generator/demo_specs/aws-philippines-retail-social-commerce.json`. Do not hand-edit: run
+`python3 generator/gen_repo_docs.py aws-philippines-retail-social-commerce` instead.
