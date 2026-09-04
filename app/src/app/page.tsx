@@ -53,6 +53,7 @@ export default function HomePage() {
         <div className="lg:col-span-1">
           <GeoMap
             country="philippines"
+            labels={{ entity: 'Influencers', event: 'Audience Records', alert: 'Underperformers' }}
             regions={data?.regions}
             markers={[{"label": "Manila", "value": "Core market: 84K sellers", "color": "blue", "size": "lg"}, {"label": "Cebu", "value": "Growing: 12K sellers", "color": "green", "size": "md"}, {"label": "Davao", "value": "Emerging: 4K sellers", "color": "amber", "size": "md"}]}
             routes={[]}
@@ -83,8 +84,13 @@ export default function HomePage() {
         columns={[
           { key: 'id', header: 'Rank' },
           { key: 'name', header: 'Influencer' },
+          { key: 'region', header: 'Region' },
           { key: 'status', header: 'Tier' },
-          { key: 'value', header: 'GMV (₱M)' },
+          { key: 'm1', header: 'GMV (₱M)' },
+          { key: 'm2', header: 'Viewers Stream' },
+          { key: 'm3', header: 'Stream Conversion' },
+          { key: 'events', header: 'Audience Records' },
+          { key: 'alerts', header: 'Underperformers' },
         ]}
         data={data?.entities || []}
         title="Top Influencer Performance"
